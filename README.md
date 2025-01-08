@@ -105,3 +105,32 @@ git clone https://github.com/gpakosz/.tmux.git
 ln -s -f .tmux/.tmux.conf
 cp .tmux/.tmux.conf.local .
 ```
+
+## Nginx conf
+```
+server {
+    listen 80 default_server;
+    listen [::]:80 default_server;
+    server_name reelsscanner.com;
+    access_log /home/askar/code/.nginx-logs/access.log;
+    error_log /home/askar/code/.nginx-logs/error.log warn;
+
+    root /var/www/html;
+
+    index index.html index.htm index.nginx-debian.html;
+
+    location /static/ {
+        alias /var/www/django-app/staticfiles/;
+    }
+
+    location / {
+        proxy_pass http://127.0.0.1:8001;
+        proxy_set_header X-Forwarded-Host $server_name;
+        proxy_set_header X-Real-IP $remote_addr;
+        add_header P3P 'CP="ALL DSP COR PSAa PSDa OUR NOR ONL UNI COM NAV"';
+        add_header Access-Control-Allow-Origin *;
+    }
+
+}
+
+```
