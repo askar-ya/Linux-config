@@ -53,7 +53,7 @@ cd postgresql*
 ```
 ### Указываем директорию для установки и собираем psql, создаем директорию для хранения данных
 ```
-./configure --prefix=/home/askar/Soft/psql
+./configure --prefix=/home/askar/Soft/psql --with-systemd
 make world
 make install-world
 mkdir Soft/psql/main
