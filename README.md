@@ -65,6 +65,35 @@ cd ~/Soft/psql
 ./bin/pg_ctl initdb -D ~/Soft/psql/main
 ./bin/pg_ctl -D /home/askar/Soft/psql/main -l logfile start > out.txt
 ```
+### Создаем службу в systemd
+```
+sudo vim /etc/systemd/system/PsqlServer.service
+```
+#### с содержимым:
+```
+[Unit]
+Description=PostgreSQL database server
+Documentation=man:postgres(1)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=forking
+User=askar
+ExecStart=/home/askar/Soft/psql/bin/pg_ctl -D /home/askar/Soft/psql/main/ -l /home/askar/Soft/psql/logfile start
+ExecReload=/bin/kill -HUP $MAINPID
+KillMode=mixed
+KillSignal=SIGINT
+
+[Install]
+WantedBy=multi-user.target
+```
+### Запускаем службу
+```
+sudo systemctl daemon-reload
+sudo systemctl start PsqlServer.service
+```
+
 
 ## Установка Neovim
 #### Копируем репозиторий
