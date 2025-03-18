@@ -49,7 +49,7 @@ sudo make altinstall
 wget https://ftp.postgresql.org/pub/source/v17.0/postgresql-17.0.tar.gz ; \
 tar xvf postgresql-17.0.tar.gz ; \
 rm -fr postgresql-17.0.tar.gz ; \
-cd postgresql* ; \
+cd postgresql* 
 ```
 ### Указываем директорию для установки и собираем psql, создаем директорию для хранения данных
 ```
