@@ -16,7 +16,7 @@ sudo apt-get install -y vim mosh tmux htop git curl wget unzip zip gcc build-ess
 ```
 ## Базовые пакеты
 ```
-sudo apt-get install -y zsh tree zlib1g-dev libbz2-dev libreadline-dev llvm libncurses5-dev libncursesw5-dev xz-utils tk-dev liblzma-dev python3-dev python3-lxml libxslt-dev python3-libxml2 libffi-dev libssl-dev python3-dev gnumeric libpq-dev libxml2-dev libxslt1-dev libjpeg-dev libfreetype6-dev libcurl4-openssl-dev bison flex xsltproc ninja-build gettext libxml2-utils xsltproc docbook-xsl
+sudo apt-get install -y zsh tree zlib1g-dev libbz2-dev libreadline-dev llvm libncurses5-dev libncursesw5-dev xz-utils tk-dev liblzma-dev python3-dev python3-lxml libxslt-dev python3-libxml2 libffi-dev libssl-dev python3-dev gnumeric libpq-dev libxml2-dev libxslt1-dev libjpeg-dev libfreetype6-dev libcurl4-openssl-dev bison flex xsltproc ninja-build gettext libxml2-utils xsltproc docbook-xsl libsystemd-dev
 ```
 ## Oh-my-zsh
 ```
