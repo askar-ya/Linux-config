@@ -92,6 +92,7 @@ WantedBy=multi-user.target
 ```
 sudo systemctl daemon-reload
 sudo systemctl start PsqlServer.service
+sudo systemctl enable postgresql.service
 ```
 
 
