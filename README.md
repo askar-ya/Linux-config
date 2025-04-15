@@ -129,6 +129,11 @@ mkdir -p ~/.local/share/nvim/site/pack/packer/start/
 
 git clone --depth 1 https://github.com/wbthomason/packer.nvim \
     ~/.local/share/nvim/site/pack/packer/start/packer.nvim
+
+#nvim :PackerSync
+
+cd ~/.local/share/nvim/site/pack/packer/start/telescope-fzf-native.nvim
+make
 ```
 
 ## Установка тем для Tmux
