@@ -125,8 +125,10 @@ npm install -g pyright
 ```
 mkdir ~/.config/nvim
 touch ~/.config/nvim/init.lua
-sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
-       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+mkdir -p ~/.local/share/nvim/site/pack/packer/start/
+
+git clone --depth 1 https://github.com/wbthomason/packer.nvim \
+    ~/.local/share/nvim/site/pack/packer/start/packer.nvim
 ```
 
 ## Установка тем для Tmux
