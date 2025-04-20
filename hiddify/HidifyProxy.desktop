@@ -1,0 +1,19 @@
+[Desktop Entry]
+Categories=Network;
+Comment[ru_RU]=Proxy Hiddify
+Comment=Proxy Hiddify
+Exec=/home/askar/soft/vpn/start_proxy.sh
+GenericName[ru_RU]=
+GenericName=
+Icon=/home/askar/soft/vpn/hiddify.png
+MimeType=
+Name[ru_RU]=Hiddify Proxy
+Name=Hiddify
+Path=
+StartupNotify=true
+Terminal=false
+TerminalOptions=
+Type=Application
+Version=1.0
+X-KDE-SubstituteUID=false
+X-KDE-Username=
