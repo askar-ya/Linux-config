@@ -147,7 +147,7 @@ do
             cd ~/soft
             mkdir vpn
             cd vpn
-            https://github.com/hiddify/hiddify-app/releases/latest/download/Hiddify-Linux-x64.AppImage
+            wget https://github.com/hiddify/hiddify-app/releases/latest/download/Hiddify-Linux-x64.AppImage
             cp hiddify/* .
             break
             ;;
