@@ -25,28 +25,10 @@ vim.api.nvim_create_autocmd('FileType', {
     callback = function()
 
         vim.opt.colorcolumn = '88'
-        vim.keymap.set('n', '<C-h>', ':w<CR>:!python3.11 %<CR>', { buffer = true, silent = true })
-        vim.keymap.set('i', '<C-h>', '<Esc>:w<CR>:!python3.11 %<CR>', { buffer = true, silent = true })
+        vim.keymap.set('n', '<C-h>', ':w<CR>:!python3.12 %<CR>', { buffer = true, silent = true })
+        vim.keymap.set('i', '<C-h>', '<Esc>:w<CR>:!python3.12 %<CR>', { buffer = true, silent = true })
     end
 })
-
-
-vim.api.nvim_create_autocmd('FileType', {
-    pattern = 'c',
-    callback = function()
-        vim.keymap.set('n', '<C-h>', ':w<CR>:!gcc % -o out; ./out<CR>', { buffer = true, silent = true })
-        vim.keymap.set('i', '<C-h>', '<Esc>:w<CR>:!gcc % -o out; ./out<CR>', { buffer = true, silent = true })
-    end
-})
-
-vim.api.nvim_create_autocmd('FileType', {
-    pattern = {'sh', 'go'},
-    callback = function()
-        vim.keymap.set('n', '<C-h>', ':w<CR>:!%<CR>', { buffer = true, silent = true })
-        vim.keymap.set('i', '<C-h>', '<Esc>:w<CR>:!%<CR>', { buffer = true, silent = true })
-    end
-})
-
 --
 
 
@@ -72,54 +54,19 @@ require('packer').startup(function(use)
     use 'L3MON4D3/LuaSnip' -- Сниппеты
     use 'nvim-treesitter/nvim-treesitter' -- Подсветка синтаксиса
 
-    use 'morhetz/gruvbox' -- Color schemes
-    use 'ayu-theme/ayu-vim'
-    --[[
-    use({
-      'rose-pine/neovim',
-      as = 'rose-pine',
-      config = function()
-        require('rose-pine').setup({
-          dark_variant = 'main', -- Variants: 'main', 'moon', 'dawn'
-          disable_background = true, -- Disable background
-          disable_float_background = false, -- Disable background for windows
-        })
-        vim.cmd('colorscheme rose-pine')
-      end,
-    })
-    --]]
-    use 'sainnhe/gruvbox-material'
-    use 'rebelot/kanagawa.nvim'
-
-    -- Comment/uncomment by gcc for current line of gc for seleted lines
-    use {
-      'numToStr/Comment.nvim',
-      config = function()
-        require('Comment').setup({
-            -- Включить/отключить добавление пробела после символа комментария
-            padding = true,
-            -- Переназначаем ключевые привязки
-            toggler = {
-                line = ',cc',  -- Закомментировать строку (вместо 'gcc')
-                block = ',cb', -- Закомментировать блок (вместо 'gbc')
-            },
-            opleader = {
-                line = ',c',   -- Закомментировать строки в визуальном режиме (вместо 'gc')
-                block = ',b',  -- Закомментировать блоки в визуальном режиме (вместо 'gb')
-            },
-        })
-      end
-    }
-
-    use 'nvim-telescope/telescope.nvim'
+    use 'nvim-telescope/telescope.nvim' -- Поиск
     use 'nvim-telescope/telescope-fzf-native.nvim'
     use 'Pocco81/auto-save.nvim' -- Автосохранение
     use 'jose-elias-alvarez/null-ls.nvim' -- Форматирование и линтинг
+
+    use {
+        "ellisonleao/gruvbox.nvim",
+        requires = {"rktjmp/lush.nvim"}
+    }
+
 end)
 
--- Color scheme
---vim.cmd([[colorscheme "rose-pine-main"]])
-vim.cmd([[colorscheme kanagawa-dragon]]) -- kanagawa-wave, kanagawa-dragon, kanagawa-lotus
+vim.cmd([[colorscheme gruvbox]])
 
 -- LSP
 local lspconfig = require('lspconfig')
@@ -161,51 +108,6 @@ lspconfig.pyright.setup({
     },
 })
 
--- Пример настройки LSP для TypeScript
-lspconfig.ts_ls.setup({
-    capabilities = capabilities,
-    on_attach = on_attach,
-})
-
--- Пример настройки LSP для Go
-lspconfig.gopls.setup({
-    cmd = { "gopls" }, -- Убедитесь, что `gopls` доступен в PATH
-    on_attach = on_attach,
-    capabilities = capabilities,
-    settings = {
-        gopls = {
-            analyses = {
-                unusedparams = true,
-            },
-            staticcheck = true,
-        },
-    },
-})
-
--- Пример настройки LSP для Rust
-lspconfig.rust_analyzer.setup({
-    cmd = { "rust-analyzer" }, -- Убедитесь, что `rust-analyzer` доступен в PATH
-    on_attach = on_attach,
-    capabilities = capabilities,
-    settings = {
-        ["rust-analyzer"] = {
-            cargo = {
-                allFeatures = true,
-            },
-            procMacro = {
-                enable = true,
-            },
-        },
-    },
-})
-
--- Null-ls для Prettier
-require('null-ls').setup({
-    sources = {
-        require('null-ls').builtins.formatting.prettier,
-    }
-
-})
 
 -- Telescope
 require('telescope').setup()
@@ -214,19 +116,6 @@ require('telescope').load_extension('fzf')
 -- Auto-save
 require('auto-save').setup()
 
--- Copy selected text to Windows buffer with "*y
-vim.g.clipboard = {
-  name = 'win32yank',
-  copy = {
-    ['+'] = 'win32yank.exe -i',
-    ['*'] = 'win32yank.exe -i',
-  },
-  paste = {
-    ['+'] = 'powershell -noprofile -command "Get-Clipboard"',
-    ['*'] = 'powershell -noprofile -command "Get-Clipboard"',
-  },
-  cache_enabled = 0,
-}
 
 -- Autocomplete settings
 local cmp = require('cmp')
